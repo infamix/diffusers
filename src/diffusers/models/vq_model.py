@@ -240,7 +240,7 @@ class VQModel(ModelMixin, ConfigMixin):
         if not return_dict:
             return (posterior,)
 
-        return VQEncoderOutput(latent_dist=posterior)
+        return VQEncoderOutput(latents=posterior)
 
     def tiled_decode(self, z: torch.FloatTensor, return_dict: bool = True) -> Union[DecoderOutput, torch.FloatTensor]:
         r"""
