@@ -160,9 +160,9 @@ class VQModel(ModelMixin, ConfigMixin):
     def decode(
         self, h: torch.FloatTensor, force_not_quantize: bool = False, return_dict: bool = True
     ) -> Union[DecoderOutput, torch.FloatTensor]:
-        if self.use_tiling and (z.shape[-1] > self.tile_latent_min_size or z.shape[-2] > self.tile_latent_min_size):
+        if self.use_tiling and (h.shape[-1] > self.tile_latent_min_size or h.shape[-2] > self.tile_latent_min_size):
             self.force_not_quantize = force_not_quantize
-            return self.tiled_decode(z, return_dict=return_dict)
+            return self.tiled_decode(h, return_dict=return_dict)
         # also go through quantization layer
         if not force_not_quantize:
             quant, _, _ = self.quantize(h)
