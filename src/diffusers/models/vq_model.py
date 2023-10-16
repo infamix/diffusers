@@ -235,7 +235,7 @@ class VQModel(ModelMixin, ConfigMixin):
             result_rows.append(torch.cat(result_row, dim=3))
 
         moments = torch.cat(result_rows, dim=2)
-        posterior = DiagonalGaussianDistribution(moments)
+        posterior = moments
 
         if not return_dict:
             return (posterior,)
